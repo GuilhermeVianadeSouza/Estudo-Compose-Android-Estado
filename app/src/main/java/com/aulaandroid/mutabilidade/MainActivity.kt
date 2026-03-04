@@ -12,6 +12,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,8 +26,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
@@ -274,6 +277,33 @@ fun TesteEstadosScreen(modifier: Modifier = Modifier) {
                 }
             ) {
                 Text(text = "Another button")
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            var favoritado by remember {
+                mutableStateOf(false)
+            }
+
+            if (favoritado){
+                Icon(
+                    modifier = Modifier.clickable{
+                        favoritado = false
+                    },
+                    imageVector = Icons.Default.Warning,
+                    contentDescription = "perigo"
+                )
+            } else {
+                Icon(
+                    modifier = Modifier.clickable{
+                        favoritado = true
+                    },
+                    imageVector = Icons.Default.Build,
+                    contentDescription = "construindo"
+                )
             }
         }
     }
